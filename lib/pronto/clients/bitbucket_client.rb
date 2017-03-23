@@ -36,7 +36,7 @@ class BitbucketClient
   private
 
   def openstruct(response)
-    response.map { |r| OpenStruct.new(r) }
+    (response.is_a?(Array) ? response : Array[response]).map { |r| OpenStruct.new(r) }
   end
 
   def post(url, body, path, position)
